@@ -56,7 +56,10 @@ Thematic is © Ian Stewart http://themeshaper.com/
 
 .sf-menu, .sf-menu a {
   border: 0;
-  padding: 0 6px;
+}
+
+.sf-menu a {
+  padding: 0 5px;
 }
 
 .sf-menu li, .sf-menu li a {

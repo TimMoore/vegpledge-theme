@@ -1,0 +1,129 @@
+/*   
+Theme Name: VegPledge Theme
+Theme URI: http://www.vegpledge.org
+Description: The WordPress theme used by VegPledge.org
+Author: Tim Moore
+Author URI: http://incrementalism.net
+Template: thematic
+Version: 1.0
+Tags: Thematic
+.
+Thematic is © Ian Stewart http://themeshaper.com/
+.
+*/
+
+/* Reset browser defaults */
+@import url('../thematic/library/styles/reset.css');
+
+/* Apply basic typography styles */
+@import url('../thematic/library/styles/typography.css');
+
+/* Apply a basic layout */
+@import url('../thematic/library/layouts/2c-r-fixed.css');
+
+/* Apply basic image styles */
+@import url('../thematic/library/styles/images.css');
+
+/* Apply default theme styles and colors */
+/* It's better to actually copy over default.css into this file (or link to a copy in your child theme) if you're going to do anything outrageous */
+@import url('../thematic/library/styles/default.css');
+
+/* Prepare theme for plugins */
+@import url('../thematic/library/styles/plugins.css');
+
+/* Get "Cantarell" font from Google */
+@import url(http://fonts.googleapis.com/css?family=Cantarell:regular,bold);
+
+/* Layout */
+
+#wrapper {
+  margin: 0 auto;
+  width: 960px;
+}
+
+#access {
+  border: none;
+  bottom: 88px;
+  height: auto;
+  position: absolute;
+  right: 10px;
+}
+
+.sf-menu {
+  border: 0;
+  float: right;
+}
+
+.sf-menu, .sf-menu a {
+  border: 0;
+  padding: 0 6px;
+}
+
+.sf-menu li, .sf-menu li a {
+  display: inline;
+  float: none;
+}
+
+/* Typography */
+
+body, #blog-title {
+  font-family: Cantarell, sans-serif;
+  font-weight: normal;
+  text-transform: uppercase;
+}
+
+#blog-title .pledge, #blog-title .out {
+  font-weight: 900;
+}
+
+#blog-description {
+  font-size: 18px;
+  font-style: normal;
+  font-weight: bold;
+}
+
+.sf-menu li:after {
+  content: "/";
+}
+
+.sf-menu li:last-child:after {
+  content: "";
+}
+
+/* Colours */
+
+body {
+  background: #1A7000;
+}
+
+#wrapper {
+  background: #FFF;
+}
+
+a, #blog-title a {
+  color: #1A7000;
+}
+
+#blog-title a:active, #blog-title a:hover {
+  color: #FF6200;
+}
+
+.sf-menu li, .sf-menu li:hover, .sf-menu li.sfHover,
+.sf-menu a, .sf-menu a:focus, .sf-menu a:hover, .sf-menu a:active {
+  background: transparent;
+  color: #666;
+}
+
+/* Ticker */
+
+#vegpledge-ticker {
+  background: #FF6200;
+  clear: both;
+  margin: 5px 0;
+  padding: 5px;
+}
+
+#vegpledge-counter {
+  float: right;
+}
+

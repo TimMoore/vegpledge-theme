@@ -2,22 +2,22 @@ jQuery(document).ready(function($) {
     var $wrapper = $('#wrapper'),
         $header = $('#header'),
         $gallery = $('#vegpledge-gallery'),
-        $bottomHeader = $header.clone().attr('id', 'bottom-header').addClass('header'),
         $topHeader = $header.clone().attr('id', 'top-header').addClass('header'),
         resizeGallery = function() {
             $gallery.height($(window).height() - $header.outerHeight());
         },
         repositionHeaders = function() {
-            var top = $header.offset().top;
-            if (top < $bottomHeader.offset().top) {
-                $bottomHeader.css('zIndex', 1);
+            var top = $header.offset().top,
+                windowTop = top - $(window).scrollTop(),
+                windowBottom = windowTop + $header.height();
+
+            if (windowBottom < $(window).height()) {
                 if (top < $topHeader.offset().top) {
                     $topHeader.css('zIndex', 10);
                 } else {
                     $topHeader.css('zIndex', 1);
                 }
             } else {
-                $bottomHeader.css('zIndex', 10);
                 $topHeader.css('zIndex', 1);
             }
         };
@@ -33,19 +33,11 @@ jQuery(document).ready(function($) {
     $wrapper.wrap('<div class="wrapper" />');
     $topHeader.css({
         top: 0,
+        position: 'fixed',
+        width: $header.width(),
         zIndex: 1
     });
-    $bottomHeader.css({
-        bottom: 0,
-        zIndex: 10
-    });
-    $.each([$topHeader, $bottomHeader], function(i, val) {
-        val.css({
-            position: 'fixed',
-            width: $header.width()
-        })
-        .insertBefore($wrapper);
-    });
+    $wrapper.before($topHeader);
 
     $(document).scroll(repositionHeaders);
     $('.header').localScroll({

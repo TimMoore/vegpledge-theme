@@ -76,7 +76,7 @@ Thematic is © Ian Stewart http://themeshaper.com/
   float: none;
 }
 
-#vegpledge-gallery, #main, #footer {
+#wrapper {
   position: relative;
   z-index: 5;
 }

@@ -36,9 +36,19 @@ Thematic is © Ian Stewart http://themeshaper.com/
 
 /* Layout */
 
-#wrapper {
+#wrapper, .wrapper {
   margin: 0 auto;
+  position: relative;
   width: 960px;
+}
+
+#vegpledge-gallery {
+  background-color: #CCC;
+  height: 2560px;
+}
+
+#branding {
+  padding-top: 0;
 }
 
 #access {
@@ -50,7 +60,6 @@ Thematic is © Ian Stewart http://themeshaper.com/
 }
 
 .sf-menu {
-  border: 0;
   float: right;
 }
 
@@ -67,15 +76,44 @@ Thematic is © Ian Stewart http://themeshaper.com/
   float: none;
 }
 
+#vegpledge-gallery, #main, #footer {
+  position: relative;
+  z-index: 5;
+}
+
+.page .entry-title {
+  display: none;
+}
+
+#main, #footer, .entry-content {
+  padding: 0;
+}
+
 /* Typography */
 
-body, #blog-title {
+body, input, textarea,
+.blog-title, .entry-title,
+.entry-content h1, .entry-content h2, .entry-content h3, .entry-content h4, .entry-content h5, .entry-content h6,
+#comments h1, #comments h2, #comments h3, #comments h4, #comments h5, #comments h6,
+.aside caption {
   font-family: Cantarell, sans-serif;
   font-weight: normal;
+}
+
+a {
+  text-decoration: none;
+}
+
+#header, .header {
   text-transform: uppercase;
 }
 
-#blog-title .pledge, #blog-title .out {
+.blog-title {
+  font-size: 36px;
+  line-height: 42px;
+}
+
+.blog-title .pledge, .blog-title .out {
   font-weight: 900;
 }
 
@@ -99,15 +137,15 @@ body {
   background: #1A7000;
 }
 
-#wrapper {
+#wrapper, #header, .header, #main, #footer {
   background: #FFF;
 }
 
-a, #blog-title a {
+a, .blog-title a {
   color: #1A7000;
 }
 
-#blog-title a:active, #blog-title a:hover {
+.blog-title a:active, .blog-title a:hover {
   color: #FF6200;
 }
 

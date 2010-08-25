@@ -21,18 +21,45 @@
 //}
 //add_filter('wp_page_menu_args','childtheme_menu_args');
 
-function unhook_thematic_functions() {
+function init_vegpledge() {
   remove_action('thematic_header', 'thematic_blogtitle', 3);
+  if (!is_admin()) {
+    $script_dir = get_bloginfo('stylesheet_directory');
+    wp_register_script('jquery-scroll-to', $script_dir . '/jquery.scrollTo-1.4.2-min.js', array('jquery'), '1.4.2');
+    wp_register_script('jquery-local-scroll', $script_dir . '/jquery.localscroll-1.2.7-min.js', array('jquery', 'jquery-scroll-to'), '1.2.7');
+    wp_register_script('vegpledge', $script_dir . '/script.js', array('jquery', 'jquery-local-scroll'), '1.0');
+    wp_enqueue_script('vegpledge');
+  }
 }
-add_action('init', 'unhook_thematic_functions');
+add_action('init', 'init_vegpledge');
+
+function vegpledge_gallery() {
+?>
+<div id="vegpledge-gallery"></div>
+<?php
+}
+add_action('thematic_aboveheader', 'vegpledge_gallery');
 
 function vegpledge_blogtitle() {
 ?>
-<div id="blog-title"><span><a href="<?php bloginfo('url') ?>/" title="<?php bloginfo('name') ?>" rel="home"><span class="veg">Veg</span><span class="pledge">Pledge</span>/<span class="veg">Veg</span><span class="out">Out</span></a></span></div>
+<div class="blog-title"><span><a href="<?php bloginfo('url') ?>/#vegpledge-gallery" title="<?php bloginfo('name') ?>" rel="home"><span class="veg">Veg</span><span class="pledge">Pledge</span>/<span class="veg">Veg</span><span class="out">Out</span></a></span></div>
 <?php
 }
 add_action('thematic_header', 'vegpledge_blogtitle', 3);
 
+function vegpledge_menu() {
+?>
+<div class="menu">
+<ul class="sf-menu">
+  <li class="page_item"><a href="#pledge" title="Make Your Pledge">Pledge</a></li>
+  <li class="page_item"><a href="#about" title="About VegPledge">About</a></li>
+  <li class="page_item"><a href="#recipes" title="Share Recipes">Recipes</a></li>
+  <li class="page_item"><a href="#contact" title="Contact VegPledge">Contact</a></li>
+</ul>
+</div>
+<?php
+}
+add_filter('wp_page_menu', 'vegpledge_menu');
 
 function vegpledge_ticker() {
 ?>

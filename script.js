@@ -5,7 +5,7 @@ jQuery(document).ready(function($) {
         $bottomHeader = $header.clone().attr('id', 'bottom-header').addClass('header'),
         $topHeader = $header.clone().attr('id', 'top-header').addClass('header'),
         resizeGallery = function() {
-            $gallery.height($(window).height());
+            $gallery.height($(window).height() - $header.outerHeight());
         },
         repositionHeaders = function() {
             var top = $header.offset().top;

@@ -96,4 +96,24 @@ function vegpledge_ticker() {
 
 add_action('thematic_header', 'vegpledge_ticker', 6);
 
+function vegpledge_pledge_names() {
+    return array(
+        'I’ll use re-usable shopping bags',
+        'I’ll buy organic products',
+        'I’ll save a trip and plan ahead',
+        'I’ll use reusable containers not plastic/foil/paper wraps',
+        'I’ll have at least one veggo day a week',
+        'I’ll keep my food miles down and buy local products',
+        'I’ll purchase products with minimal, sustainable packaging',
+        'I’ll start a veggie garden and reap what I sow',
+        'I’ll grow my own herbs',
+        'I’ll eat at food venues with sustainable food menus and practices',
+        'I’ll take a reusable mug when I buy take-away drinks',
+        'I’ll choose more sustainable seafood options',
+        'I’ll eat less packaged food',
+        'I’ll refill a water bottle instead of buying a new one',
+        'I’ll use sustainable transport (walk, cycle, public transport) to get to the shops'
+    );
+}
+
 ?>

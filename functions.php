@@ -34,9 +34,32 @@ function init_vegpledge() {
 add_action('init', 'init_vegpledge');
 
 function vegpledge_gallery() {
+  if (is_front_page()) {
 ?>
-<div id="vegpledge-gallery"></div>
+<p id="vegpledge-gallery-intro">
+    Take a closer look at the food choices you make everyday &mdash what
+    impact on the environment are you having? Join the VegPledge to make it a
+    positive one.
+</p>
+<ul id="vegpledge-gallery">
+    <li>I’ll use re-usable shopping bags</li>
+    <li>I’ll buy organic products</li>
+    <li>I’ll save a trip and plan ahead</li>
+    <li>I’ll use reusable containers not plastic/foil/paper wraps</li>
+    <li>I’ll have at least one veggo day a week</li>
+    <li>I’ll keep my food miles down and buy local products</li>
+    <li>I’ll purchase products with minimal, sustainable packaging</li>
+    <li>I’ll start a veggie garden and reap what I sow</li>
+    <li>I’ll grow my own herbs</li>
+    <li>I’ll eat at food venues with sustainable food menus and practices</li>
+    <li>I’ll take a reusable mug when I buy take-away drinks</li>
+    <li>I’ll choose more sustainable seafood options</li>
+    <li>I’ll eat less packaged food</li>
+    <li>I’ll refill a water bottle instead of buying a new one</li>
+    <li>I’ll use sustainable transport (walk, cycle, public transport) to get to the shops</li>
+</ul>
 <?php
+  }
 }
 add_action('thematic_aboveheader', 'vegpledge_gallery');
 
@@ -51,9 +74,10 @@ function vegpledge_menu() {
 ?>
 <div class="menu">
 <ul class="sf-menu">
+<li class="page_item"><a href="#about" title="About VegPledge">About</a></li>
   <li class="page_item"><a href="#pledge" title="Make Your Pledge">Pledge</a></li>
-  <li class="page_item"><a href="#about" title="About VegPledge">About</a></li>
-  <li class="page_item"><a href="#recipes" title="Share Recipes">Recipes</a></li>
+  <li class="page_item"><a href="#picnic" title="VegOut at the VegPledge Picnic">Picnic</a></li>
+  <li class="page_item"><a href="#vegpacks" title="Buy a Veg Pack Lunch Box for the Picnic">VegPacks</a></li>
   <li class="page_item"><a href="#contact" title="Contact VegPledge">Contact</a></li>
 </ul>
 </div>

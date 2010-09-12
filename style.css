@@ -55,6 +55,18 @@ Thematic is © Ian Stewart http://themeshaper.com/
     right: 10px;
 }
 
+.blog-title {
+    background: url(/wp-content/themes/vegpledge-theme/VegPledge.gif) no-repeat;
+    height: 57px;
+    width: 413px;
+    text-indent: -15000px;
+}
+
+.blog-title a {
+    display: block;
+    margin-top: 10px;
+}
+
 .menu, .sf-menu {
     float: right;
 }
@@ -97,6 +109,10 @@ Thematic is © Ian Stewart http://themeshaper.com/
 
 input.checkbox {
     width: auto;
+}
+
+table {
+    border: none;
 }
 
 /* Typography */
@@ -146,22 +162,18 @@ a {
 /* Colours */
 
 body {
-    background: #1A7000;
+    background: #8DC63F;
+}
+
+a, .blog-title a {
+    color: #8DC63F;
 }
 
 #wrapper, #header, .header, #main, #footer {
     background: #FFF;
 }
 
-#vegpledge-gallery-intro {
-    color: #FF6200;
-}
-
-a, .blog-title a {
-    color: #1A7000;
-}
-
-.blog-title a:active, .blog-title a:hover {
+#vegpledge-gallery-intro, .blog-title a:active, .blog-title a:hover {
     color: #FF6200;
 }
 

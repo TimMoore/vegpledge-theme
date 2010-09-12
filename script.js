@@ -32,7 +32,7 @@ jQuery(document).ready(function($) {
         repositionHeaders = function() {
             var headerTop = $header.offset().top,
             windowTop = headerTop - $(window).scrollTop(),
-            windowBottom = windowTop + $header.height();
+            windowBottom = windowTop + $header.outerHeight();
 
             if (windowBottom < $(window).height()) {
                 if (windowTop > 0) {

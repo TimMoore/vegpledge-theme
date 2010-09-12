@@ -36,7 +36,7 @@ function vegpledge_blogtitle() {
 ?>
 <div class="blog-title">
     <a href="<?php bloginfo('url') ?>/#vegpledge-gallery" title="<?php bloginfo('name') ?>" rel="home">VegPledge/VegOut</a>
-    A 350.org 10/10/10 Global Work/Party
+    <div>A 350.org 10/10/10 Global Work/Party</div>
 </div>
 <?php
 }
@@ -107,16 +107,16 @@ function vegpledge_print_pledge($comment, $args, $depth) {
     $GLOBALS['comment_depth'] = $depth;
 ?>
 <li id="comment-<?php comment_ID() ?>" class="<?php thematic_comment_class() ?>">
-    <div class="comment-author vcard"><?php thematic_commenter_link() ?></div>
-    <div class="comment-meta">
+    <span class="comment-author vcard"><?php thematic_commenter_link() ?></span>
+    <span class="comment-meta">
 <?php
-    printf(__('Pledged %1$s at %2$s <span class="meta-sep">|</span> <a href="%3$s" title="Permalink to this pledge">Permalink</a>', 'thematic'),
+    printf(__('Pledged %1$s at %2$s <span class="meta-sep">|</span> <a href="%3$s" title="Link to This VegPledge">Link</a>', 'thematic'),
         get_comment_date(),
         get_comment_time(),
         '#comment-' . get_comment_ID() );
         edit_comment_link(__('Edit', 'thematic'), ' <span class="meta-sep">|</span> <span class="edit-link">', '</span>');
 ?>
-    </div>
+    </span>
 <?php
     if ($comment->comment_approved == '0') _e("\t\t\t\t\t<span class='unapproved'>Your comment is awaiting moderation.</span>\n", 'thematic')
 ?>

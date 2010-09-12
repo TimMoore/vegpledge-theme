@@ -47,6 +47,10 @@ Thematic is © Ian Stewart http://themeshaper.com/
     padding: 10px;
 }
 
+#header, .header {
+    padding: 10px 0;
+}
+
 #access {
     border: none;
     bottom: 88px;
@@ -64,7 +68,6 @@ Thematic is © Ian Stewart http://themeshaper.com/
 
 .blog-title a {
     display: block;
-    margin-top: 10px;
 }
 
 .menu, .sf-menu {
@@ -85,7 +88,6 @@ Thematic is © Ian Stewart http://themeshaper.com/
 }
 
 #wrapper {
-    position: relative;
     z-index: 5;
 }
 
@@ -96,6 +98,10 @@ Thematic is © Ian Stewart http://themeshaper.com/
 #content {
     margin: 0 10px;
     width: auto;
+}
+
+#pledge-descriptions li {
+    margin: 0 0 8px 0;
 }
 
 #branding, #main, #footer, .entry-content {
@@ -109,6 +115,11 @@ Thematic is © Ian Stewart http://themeshaper.com/
 
 input.checkbox {
     width: auto;
+}
+
+ol, ul {
+    list-style-type: none;
+    margin: 0;
 }
 
 table {
@@ -165,7 +176,7 @@ body {
     background: #8DC63F;
 }
 
-a, .blog-title a {
+a, a:link {
     color: #8DC63F;
 }
 
@@ -173,7 +184,7 @@ a, .blog-title a {
     background: #FFF;
 }
 
-#vegpledge-gallery-intro, .blog-title a:active, .blog-title a:hover {
+#vegpledge-gallery-intro, a:active, a:hover, a:visited {
     color: #FF6200;
 }
 
@@ -188,7 +199,7 @@ a, .blog-title a {
 #vegpledge-ticker {
     background: #FF6200;
     clear: both;
-    margin: 5px 0;
+    margin: 5px 0 0 0;
     padding: 5px;
 }
 
@@ -213,7 +224,6 @@ a, .blog-title a {
 
 #vegpledge-gallery li, li.pledge {
     float: left;
-    list-style: none;
 }
 
 #vegpledge-gallery li, #vegpledge-gallery a, .pledge {
@@ -288,4 +298,15 @@ a.pledge-herbs:hover, .pledge-herbs {
 
 a.pledge-venues:hover, .pledge-venues {
     background-position: -768px -384px;
+}
+
+/* Pledge List */
+
+#comments {
+    margin: 0;
+    padding: 0;
+}
+
+#vegpledge-list-pledges {
+    margin: 0 -10px;
 }

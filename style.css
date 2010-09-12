@@ -47,13 +47,6 @@ Thematic is © Ian Stewart http://themeshaper.com/
     padding: 10px;
 }
 
-#vegpledge-gallery {
-    margin: 0;
-    overflow: auto;    
-    padding: 0;
-    position: relative;
-}
-
 #access {
     border: none;
     bottom: 88px;
@@ -132,7 +125,7 @@ a {
     line-height: 42px;
 }
 
-.blog-title .pledge, .blog-title .out {
+.blog-title .title-pledge, .blog-title .title-out {
     font-weight: 900;
 }
 
@@ -191,20 +184,96 @@ a, .blog-title a {
     float: right;
 }
 
-/* Pledge Badge */
+/* Pledge Badges */
 
-#vegpledge-gallery li {
-    background-image: url(/wp-content/uploads/pledges/keepcup-s.gif);
-    border: 0;
-    float: left;
-    list-style: none;
+#vegpledge-gallery {
+    background-image: url(/wp-content/themes/vegpledge-theme/pledgegallery-s.gif);
+    height: 576px;
     margin: 0;
     padding: 0;
-    height: 192px;
-    width: 192px;
-    text-indent: -15000px;
+    width: 100%;
 }
 
-#vegpledge-gallery li:hover {
-    background-image: url(/wp-content/uploads/pledges/keepcup-h.gif);
+#vegpledge-gallery, #vegpledge-list-pledges {
+    overflow: auto;
+    position: relative;
+}
+
+#vegpledge-gallery li, li.pledge {
+    float: left;
+    list-style: none;
+}
+
+#vegpledge-gallery li, #vegpledge-gallery a, .pledge {
+    display: block;
+    border: 0;
+    height: 192px;
+    margin: 0;
+    padding: 0;
+    text-indent: -15000px;
+    width: 192px;
+}
+
+#vegpledge-gallery a:hover, .pledge {
+    background-image: url(/wp-content/themes/vegpledge-theme/pledgegallery-h.gif);
+}
+
+a.pledge-bottle:hover, .pledge-bottle {
+    background-position: -0px -0px;
+}
+
+a.pledge-containers:hover, .pledge-containers {
+    background-position: -192px -0px;
+}
+
+a.pledge-bags:hover, .pledge-bags {
+    background-position: -384px -0px;
+}
+
+a.pledge-local:hover, .pledge-local {
+    background-position: -576px -0px;
+}
+
+a.pledge-veg:hover, .pledge-veg {
+    background-position: -768px -0px;
+}
+
+a.pledge-seafood:hover, .pledge-seafood {
+    background-position: -0px -192px;
+}
+
+a.pledge-garden:hover, .pledge-garden {
+    background-position: -192px -192px;
+}
+
+a.pledge-mug:hover, .pledge-mug {
+    background-position: -384px -192px;
+}
+
+a.pledge-organic:hover, .pledge-organic {
+    background-position: -576px -192px;
+}
+
+a.pledge-trip:hover, .pledge-trip {
+    background-position: -768px -192px;
+}
+
+a.pledge-packaging:hover, .pledge-packaging {
+    background-position: -0px -384px;
+}
+
+a.pledge-transport:hover, .pledge-transport {
+    background-position: -192px -384px;
+}
+
+a.pledge-cooking:hover, .pledge-cooking {
+    background-position: -384px -384px;
+}
+
+a.pledge-herbs:hover, .pledge-herbs {
+    background-position: -576px -384px;
+}
+
+a.pledge-venues:hover, .pledge-venues {
+    background-position: -768px -384px;
 }

@@ -27,7 +27,7 @@ foreach ( $comments as $comment )
 
 <?php thematic_abovecommentslist() ?>
 
-                <div id="comments-list" class="comments">
+                <div id="pledge-list" class="comments">
                     <h3><?php printf($comment_count > 1 ? __(thematic_multiplecomments_text(), 'thematic') : __(thematic_singlecomment_text(), 'thematic'), $comment_count) ?></h3>
 
                     <ol>

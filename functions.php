@@ -1,26 +1,5 @@
 <?php
 
-//
-//  Custom Child Theme Functions
-//
-
-// I've included a "commented out" sample function below that'll add a home link to your menu
-// More ideas can be found on "A Guide To Customizing The Thematic Theme Framework" 
-// http://themeshaper.com/thematic-for-wordpress/guide-customizing-thematic-theme-framework/
-
-// Adds a home link to your menu
-// http://codex.wordpress.org/Template_Tags/wp_page_menu
-//function childtheme_menu_args($args) {
-//    $args = array(
-//        'show_home' => 'Home',
-//        'sort_column' => 'menu_order',
-//        'menu_class' => 'menu',
-//        'echo' => true
-//    );
-//	return $args;
-//}
-//add_filter('wp_page_menu_args','childtheme_menu_args');
-
 function init_vegpledge() {
   remove_action('thematic_header', 'thematic_blogtitle', 3);
   if (!is_admin()) {
@@ -98,22 +77,73 @@ add_action('thematic_header', 'vegpledge_ticker', 6);
 
 function vegpledge_pledge_names() {
     return array(
-        'I’ll use re-usable shopping bags',
-        'I’ll buy organic products',
-        'I’ll save a trip and plan ahead',
-        'I’ll use reusable containers not plastic/foil/paper wraps',
-        'I’ll have at least one veggo day a week',
-        'I’ll keep my food miles down and buy local products',
-        'I’ll purchase products with minimal, sustainable packaging',
-        'I’ll start a veggie garden and reap what I sow',
-        'I’ll grow my own herbs',
-        'I’ll eat at food venues with sustainable food menus and practices',
-        'I’ll take a reusable mug when I buy take-away drinks',
-        'I’ll choose more sustainable seafood options',
-        'I’ll eat less packaged food',
-        'I’ll refill a water bottle instead of buying a new one',
-        'I’ll use sustainable transport (walk, cycle, public transport) to get to the shops'
+        'bottle' => 'I’ll refill a reusable drink bottle instead of buying a new one',
+        'containers' => 'I’ll use reusable containers not foil, plastic or paper wrap',
+        'bags' => 'I’ll use my own shopping bags',
+        'local' => 'I’ll reduce my food miles and buy local',
+        'veg' => 'I’ll eat more veggo meals and less meat',
+        'seafood' => 'I’ll choose sustainable seafood options',
+        'garden' => 'I’ll start a veggie garden and reap what I sow',
+        'mug' => 'I’ll take a reusable mug when I buy take-away',
+        'organic' => 'I will buy organic products',
+        'trip' => 'I’ll plan ahead and save a trip',
+        'packaging' => 'I’ll purchase products with minimal and sustainable packaging',
+        'transport' => 'I’ll use sustainable transport to do my shopping',
+        'cooking' => 'I’ll do more cooking at home',
+        'herbs' => 'I’ll grow my own herbs',
+        'venues' => 'I’ll support venues with sustainable food menus'
     );
 }
 
+function vegpledge_add_comment_pledges($comment_id) {
+    foreach (vegpledge_pledge_names() as $pledge_id => $pledge) {
+        if ($_POST[$pledge_id]) {
+            add_comment_meta($comment_id, 'vegpledge', $pledge_id);
+        }
+    }
+}
+add_action('comment_post', 'vegpledge_add_comment_pledges', 1);
+
+function vegpledge_get_comment_pledges($comment_id) {
+    $pledges = get_comment_meta($comment_id, 'vegpledge');
+    return array_intersect_key(vegpledge_pledge_names(), array_flip($pledges));
+}
+
+function vegpledge_print_pledge($comment, $args, $depth) {
+    $GLOBALS['comment'] = $comment;
+    $GLOBALS['comment_depth'] = $depth;
+?>
+<li id="comment-<?php comment_ID() ?>" class="<?php thematic_comment_class() ?>">
+    <div class="comment-author vcard"><?php thematic_commenter_link() ?></div>
+    <div class="comment-meta">
+<?php
+    printf(__('Pledged %1$s at %2$s <span class="meta-sep">|</span> <a href="%3$s" title="Permalink to this pledge">Permalink</a>', 'thematic'),
+        get_comment_date(),
+        get_comment_time(),
+        '#comment-' . get_comment_ID() );
+        edit_comment_link(__('Edit', 'thematic'), ' <span class="meta-sep">|</span> <span class="edit-link">', '</span>');
+?>
+    </div>
+<?php
+    if ($comment->comment_approved == '0') _e("\t\t\t\t\t<span class='unapproved'>Your comment is awaiting moderation.</span>\n", 'thematic')
+?>
+    <div id="vegpledge-list-pledges">
+        <ul>
+<?php foreach (vegpledge_get_comment_pledges(get_comment_ID()) as $pledge_id => $pledge) : ?>
+            <li id="pledge-<?php echo $pledge_id ?>">
+                <?php echo esc_html($pledge) ?>
+            </li>
+<?php endforeach ?>
+        </ul>
+    </div>
+    <div class="comment-content">
+        <?php comment_text() ?>
+    </div>
+<?php
+}
+
+function vegpledge_list_comments_arg() {
+    return 'type=comment&callback=vegpledge_print_pledge';
+}
+add_filter('list_comments_arg', 'vegpledge_list_comments_arg');
 ?>

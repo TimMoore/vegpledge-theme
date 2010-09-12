@@ -114,7 +114,7 @@ foreach ( $comments as $comment )
                                             class="checkbox"
                                             type="checkbox"
                                             name="<?php echo $pledge_id ?>">
-                                        <label for="pledge-<?php echo $pledge_id ?>-checkbox"><?php echo $pledge ?></label>
+                                        <label for="pledge-<?php echo $pledge_id ?>-checkbox"><?php echo esc_html($pledge) ?></label>
                                     </li>
 <?php endforeach ?>
                                 </ul>

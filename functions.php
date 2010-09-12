@@ -17,6 +17,7 @@ add_action('init', 'init_vegpledge');
 function vegpledge_gallery() {
   if (is_front_page()) {
 ?>
+<div id="top"></div>
 <p id="vegpledge-gallery-intro">
     Take a closer look at the food choices you make everyday &mdash; what
     impact on the environment are you having? Join the VegPledge to make it a
@@ -35,7 +36,7 @@ add_action('thematic_aboveheader', 'vegpledge_gallery');
 function vegpledge_blogtitle() {
 ?>
 <div class="blog-title">
-    <a href="<?php bloginfo('url') ?>/#vegpledge-gallery" title="<?php bloginfo('name') ?>" rel="home">VegPledge/VegOut</a>
+    <a href="<?php bloginfo('url') ?>/#top" title="<?php bloginfo('name') ?>" rel="home">VegPledge/VegOut</a>
     <div>A 350.org 10/10/10 Global Work/Party</div>
 </div>
 <?php
@@ -57,11 +58,30 @@ function vegpledge_menu() {
 }
 add_filter('wp_page_menu', 'vegpledge_menu');
 
+function vegpledge_get_all_pledges() {
+    $pledges = array();
+    $pledge_labels = vegpledge_pledge_ticker_labels();
+    $pledge_comments = get_approved_comments(12);
+    foreach ($pledge_comments as $pledge_comment) {
+        foreach (get_comment_meta($pledge_comment->comment_ID, 'vegpledge') as $pledge) {
+            $pledges[] = $pledge_comment->comment_author . ' pledged to ' . $pledge_labels[$pledge];
+        }
+    }
+    shuffle($pledges);
+    return $pledges;
+}
+
 function vegpledge_ticker() {
+    $pledges = vegpledge_get_all_pledges();
 ?>
 <div id="vegpledge-ticker">
-  My pledge is to...
-  <div id="vegpledge-counter"># Pledges</div>
+  <ul id="vegpledge-ticker-pledges">
+    <?php foreach ($pledges as $pledge) { ?>
+        <li><?php echo esc_html($pledge) ?></li>
+    <?php } ?>
+  </ul>
+  <span id="random-pledge"><?php echo $pledges[0] ?></span>
+  <div id="vegpledge-counter"><a href="/pledges/"><?php echo count($pledges) ?> Pledges</div>
 </div>
 <?php
 }
@@ -85,6 +105,26 @@ function vegpledge_pledge_names() {
         'cooking' => 'I’ll do more cooking at home',
         'herbs' => 'I’ll grow my own herbs',
         'venues' => 'I’ll support venues with sustainable food menus'
+    );
+}
+
+function vegpledge_pledge_ticker_labels() {
+    return array(
+        'bottle' => 'use a reusable drink bottle',
+        'containers' => 'use reusable containers',
+        'bags' => 'use their own shopping bags',
+        'local' => 'reduce their food miles',
+        'veg' => 'eat more veggo meals',
+        'seafood' => 'choose sustainable seafood options',
+        'garden' => 'start a veggie garden',
+        'mug' => 'take a reusable mug',
+        'organic' => 'buy organic products',
+        'trip' => 'plan ahead and save a trip',
+        'packaging' => 'purchase products with sustainable packaging',
+        'transport' => 'use sustainable transport',
+        'cooking' => 'do more cooking at home',
+        'herbs' => 'grow their own herbs',
+        'venues' => 'support venues with sustainable menus'
     );
 }
 

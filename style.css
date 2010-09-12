@@ -72,6 +72,7 @@ Thematic is © Ian Stewart http://themeshaper.com/
 
 .menu, .sf-menu {
     float: right;
+    width: auto;
 }
 
 .sf-menu, .sf-menu a {
@@ -201,6 +202,14 @@ a, a:link {
     clear: both;
     margin: 5px 0 0 0;
     padding: 5px;
+}
+
+#vegpledge-ticker a {
+    color: #000;
+}
+
+#vegpledge-ticker-pledges {
+    display: none;
 }
 
 #vegpledge-counter {

@@ -9,6 +9,9 @@ jQuery(document).ready(function($) {
                 position: 'fixed',
                 width: $header.width(),
             }),
+        pledgeTicker = $('#vegpledge-ticker-pledges li').map(function() {
+            return this.textContent;
+        }).toArray();
         floatToBottom = function() {
             $floatingHeader.css({
                 bottom: 0,
@@ -27,8 +30,7 @@ jQuery(document).ready(function($) {
             $floatingHeader.css({
                 zIndex: 1
             })
-        }
-
+        },
         repositionHeaders = function() {
             var headerTop = $header.offset().top,
             windowTop = headerTop - $(window).scrollTop(),
@@ -43,6 +45,13 @@ jQuery(document).ready(function($) {
             } else {
                 floatToBottom();
             }
+        },
+        nextPledgeTicker = function() {
+            var nextPledge = pledgeTicker.pop();
+            $('#random-pledge').fadeOut(function() {
+                $(this).text(nextPledge).fadeIn();
+            });
+            pledgeTicker.unshift(nextPledge);
         };
 
         $(window).resize(function() {
@@ -61,5 +70,7 @@ jQuery(document).ready(function($) {
             offset: -$header.outerHeight()
         });
         $.localScroll.hash();
+
+        setInterval(nextPledgeTicker, 10000);
     });
 

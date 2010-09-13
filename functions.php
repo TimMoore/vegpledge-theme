@@ -35,9 +35,15 @@ add_action('thematic_aboveheader', 'vegpledge_gallery');
 
 function vegpledge_blogtitle() {
 ?>
-<div class="blog-title">
-    <a href="<?php bloginfo('url') ?>/#top" title="<?php bloginfo('name') ?>" rel="home">VegPledge/VegOut</a>
-    <div>A 350.org 10/10/10 Global Work/Party</div>
+<div class="header-top-wrapper">
+    <div class="blog-title">
+        <a href="<?php bloginfo('url') ?>/#top" title="<?php bloginfo('name') ?>" rel="home">VegPledge/VegOut</a>
+    </div>
+    <?php if (is_front_page()) { ?>
+    <div class='vegpledge-my-pledges'>
+        Choose your pledges below.
+    </div>
+    <?php } ?>
 </div>
 <?php
 }
@@ -47,11 +53,11 @@ function vegpledge_menu() {
 ?>
 <div class="menu">
 <ul class="sf-menu">
-<li class="page_item"><a href="#about" title="About VegPledge">About</a></li>
-  <li class="page_item"><a href="#pledge" title="Make Your Pledge">Pledge</a></li>
-  <li class="page_item"><a href="#picnic" title="VegOut at the VegPledge Picnic">Picnic</a></li>
-  <li class="page_item"><a href="#vegpacks" title="Buy a Veg Pack Lunch Box for the Picnic">VegPacks</a></li>
-  <li class="page_item"><a href="#contact" title="Contact VegPledge">Contact</a></li>
+<li class="page_item"><a href="/#about" title="About VegPledge">About</a></li>
+  <li class="page_item"><a href="/#pledge" title="Make Your Pledge">Pledge</a></li>
+  <li class="page_item"><a href="/#picnic" title="VegOut at the VegPledge Picnic">Picnic</a></li>
+  <li class="page_item"><a href="/#vegpacks" title="Buy a Veg Pack Lunch Box for the Picnic">VegPacks</a></li>
+  <li class="page_item"><a href="/#contact" title="Contact VegPledge">Contact</a></li>
 </ul>
 </div>
 <?php
@@ -72,21 +78,30 @@ function vegpledge_get_all_pledges() {
 }
 
 function vegpledge_ticker() {
+    global $pledges;
     $pledges = vegpledge_get_all_pledges();
 ?>
-<div id="vegpledge-ticker">
-  <ul id="vegpledge-ticker-pledges">
-    <?php foreach ($pledges as $pledge) { ?>
-        <li><?php echo esc_html($pledge) ?></li>
-    <?php } ?>
-  </ul>
-  <span id="random-pledge"><?php echo $pledges[0] ?></span>
-  <div id="vegpledge-counter"><a href="/pledges/"><?php echo count($pledges) ?> Pledges</div>
+<div class="vegpledge-ticker">
+  <span class="random-pledge"><?php echo $pledges[0] ?></span>
+  <div class="vegpledge-counter"><a href="/pledges/"><?php echo count($pledges) ?> Pledges</a></div>
 </div>
 <?php
 }
 
 add_action('thematic_header', 'vegpledge_ticker', 6);
+
+function vegpledge_ticker_pledges() {
+    global $pledges;
+?>
+    <ul id="vegpledge-ticker-pledges">
+      <?php foreach ($pledges as $pledge) { ?>
+          <li><?php echo esc_html($pledge) ?></li>
+      <?php } ?>
+    </ul>
+<?php
+}
+
+add_action('thematic_belowheader', 'vegpledge_ticker_pledges');
 
 function vegpledge_pledge_names() {
     return array(
@@ -112,8 +127,8 @@ function vegpledge_pledge_ticker_labels() {
     return array(
         'bottle' => 'use a reusable drink bottle',
         'containers' => 'use reusable containers',
-        'bags' => 'use their own shopping bags',
-        'local' => 'reduce their food miles',
+        'bags' => 'bring reusable shopping bags',
+        'local' => 'buy locally',
         'veg' => 'eat more veggo meals',
         'seafood' => 'choose sustainable seafood options',
         'garden' => 'start a veggie garden',
@@ -123,7 +138,7 @@ function vegpledge_pledge_ticker_labels() {
         'packaging' => 'purchase products with sustainable packaging',
         'transport' => 'use sustainable transport',
         'cooking' => 'do more cooking at home',
-        'herbs' => 'grow their own herbs',
+        'herbs' => 'grow herbs at home',
         'venues' => 'support venues with sustainable menus'
     );
 }

@@ -53,21 +53,30 @@ Thematic is © Ian Stewart http://themeshaper.com/
 
 #access {
     border: none;
-    bottom: 88px;
+    top: 10px;
     height: auto;
     position: absolute;
     right: 10px;
 }
 
+.header-top-wrapper {
+    position: relative;
+}
+
 .blog-title {
     background: url(/wp-content/themes/vegpledge-theme/VegPledge.gif) no-repeat;
     height: 57px;
-    width: 413px;
     text-indent: -15000px;
 }
 
 .blog-title a {
     display: block;
+}
+
+.vegpledge-my-pledges {
+    bottom: 0;
+    position: absolute;
+    right: 0;
 }
 
 .menu, .sf-menu {
@@ -79,7 +88,7 @@ Thematic is © Ian Stewart http://themeshaper.com/
     border: 0;
 }
 
-.sf-menu a {
+.sf-menu a, .vegpledge-my-pledges a {
     padding: 0 5px;
 }
 
@@ -190,21 +199,22 @@ a, a:link {
 }
 
 .sf-menu li, .sf-menu li:hover, .sf-menu li.sfHover,
-.sf-menu a, .sf-menu a:focus, .sf-menu a:hover, .sf-menu a:active {
+.sf-menu a, .sf-menu a:focus, .sf-menu a:hover, .sf-menu a:active,
+.vegpledge-my-pledges {
     background: transparent;
     color: #666;
 }
 
 /* Ticker */
 
-#vegpledge-ticker {
+.vegpledge-ticker {
     background: #FF6200;
     clear: both;
     margin: 5px 0 0 0;
     padding: 5px;
 }
 
-#vegpledge-ticker a {
+.vegpledge-ticker a {
     color: #000;
 }
 
@@ -212,7 +222,7 @@ a, a:link {
     display: none;
 }
 
-#vegpledge-counter {
+.vegpledge-counter {
     float: right;
 }
 

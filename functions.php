@@ -149,6 +149,9 @@ function vegpledge_add_comment_pledges($comment_id) {
             add_comment_meta($comment_id, 'vegpledge', $pledge_id);
         }
     }
+    if ($_POST['subscribe']) {
+        add_comment_meta($comment_id, 'vegpledge_subscribe', 1);
+    }
 }
 add_action('comment_post', 'vegpledge_add_comment_pledges', 1);
 
@@ -178,7 +181,7 @@ function vegpledge_print_pledge($comment, $args, $depth) {
     <div id="vegpledge-list-pledges">
         <ul>
 <?php foreach (vegpledge_get_comment_pledges(get_comment_ID()) as $pledge_id => $pledge) : ?>
-            <li class="pledge pledge-<?php echo $pledge_id ?>">
+            <li class="mini-pledge mini-pledge-<?php echo $pledge_id ?>">
                 <?php echo esc_html($pledge) ?>
             </li>
 <?php endforeach ?>
@@ -194,4 +197,66 @@ function vegpledge_list_comments_arg() {
     return 'type=comment&callback=vegpledge_print_pledge';
 }
 add_filter('list_comments_arg', 'vegpledge_list_comments_arg');
+
+function vegpledge_print_share_form() {
+    if (!is_front_page()) return;
+?>
+                    <div id="vegpledge-share-form">
+                        <h3>Make Your VegPledge</h3>
+
+                        <div class="formcontainer">
+                            <?php thematic_abovecommentsform() ?>
+
+                            <form id="commentform" action="<?php bloginfo('stylesheet_directory'); ?>/vegpledge-post.php" method="post">
+
+    <?php if ( $user_ID ) : ?>
+                                <p id="login"><?php printf(__('<span class="loggedin">Logged in as <a href="%1$s" title="Logged in as %2$s">%2$s</a>.</span> <span class="logout"><a href="%3$s" title="Log out of this account">Log out?</a></span>', 'thematic'),
+                                    get_option('siteurl') . '/wp-admin/profile.php',
+                                    wp_specialchars($user_identity, true),
+                                    wp_logout_url(get_permalink()) ) ?></p>
+    <?php else : ?>
+                                <div id="form-section-author" class="form-section">
+                                    <div class="form-label"><label for="author"><?php _e('Name', 'thematic') ?></label> <?php if ($req) _e('<span class="required">*</span>', 'thematic') ?></div>
+                                    <div class="form-input"><input id="author" name="author" type="text" value="<?php echo $comment_author ?>" size="30" maxlength="20" /></div>
+                                </div><!-- #form-section-author .form-section -->
+
+                                <div id="form-section-email" class="form-section">
+                                    <div class="form-label"><label for="email"><?php _e('Email', 'thematic') ?></label> <?php if ($req) _e('<span class="required">*</span>', 'thematic') ?></div>
+                                    <div class="form-input"><input id="email" name="email" type="text" value="<?php echo $comment_author_email ?>" size="30" maxlength="50" /></div>
+                                </div><!-- #form-section-email .form-section -->
+
+                                <div id="form-section-url" class="form-section">
+                                    <div class="form-label"><label for="url"><?php _e('Website', 'thematic') ?></label></div>
+                                    <div class="form-input"><input id="url" name="url" type="text" value="<?php echo $comment_author_url ?>" size="30" maxlength="50" /></div>
+                                </div><!-- #form-section-url .form-section -->
+    <?php endif /* if ( $user_ID ) */ ?>
+
+                                <div id="vegpledge-choose-pledges" class="form-section">
+                                    <ul>
+                                        <li></li>
+                                    </ul>
+                                </div>
+
+                                <div id="form-section-comment" class="form-section">
+                                    <div class="form-label"><label for="comment">Invent Your Own VegPledge or Add a Comment</label></div>
+                                    <div class="form-textarea"><textarea id="comment" name="comment" cols="45" rows="8"></textarea></div>
+                                </div><!-- #form-section-comment .form-section -->
+
+                                <?php do_action('comment_form', 12); ?>
+
+                                <input type="hidden" name="comment_post_ID" value="12" />
+
+                                <div class="form-submit">
+                                    <input id="subscribe" class="checkbox" name="subscribe" type="checkbox" checked="checked" /> <label for="subscribe">Subscribe to the Announcement List</label>
+                                    <input id="submit" name="submit" type="submit" value="Share My VegPledge" />
+                                </div>
+
+                            </form><!-- #commentform -->
+
+                            <?php thematic_belowcommentsform() ?>
+                        </div><!-- .formcontainer -->
+                    </div><!-- #vegpledge-share-form -->
+<?php
+}
+add_action('thematic_belowfooter', 'vegpledge_print_share_form');
 ?>

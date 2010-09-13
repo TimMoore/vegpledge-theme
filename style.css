@@ -40,6 +40,7 @@ Thematic is © Ian Stewart http://themeshaper.com/
     margin: 0 auto;
     position: relative;
     width: 960px;
+    z-index: 5;
 }
 
 #vegpledge-gallery-intro {
@@ -49,6 +50,7 @@ Thematic is © Ian Stewart http://themeshaper.com/
 
 #header, .header {
     padding: 10px 0;
+    position: relative;
 }
 
 #access {
@@ -97,10 +99,6 @@ Thematic is © Ian Stewart http://themeshaper.com/
     float: none;
 }
 
-#wrapper {
-    z-index: 5;
-}
-
 .page .entry-title {
     display: none;
 }
@@ -110,8 +108,21 @@ Thematic is © Ian Stewart http://themeshaper.com/
     width: auto;
 }
 
+#comments {
+    margin: 0;
+    padding: 0;
+}
+
+#pledge-descriptions td {
+    vertical-align: top;
+}
+
 #pledge-descriptions li {
     margin: 0 0 8px 0;
+}
+
+#vegpledge-share-form {
+    display: none;
 }
 
 #branding, #main, #footer, .entry-content {
@@ -212,6 +223,7 @@ a, a:link {
     clear: both;
     margin: 5px 0 0 0;
     padding: 5px;
+    position: relative;
 }
 
 .vegpledge-ticker a {
@@ -223,7 +235,9 @@ a, a:link {
 }
 
 .vegpledge-counter {
-    float: right;
+    position: absolute;
+    right: 5px;
+    top: 5px;
 }
 
 /* Pledge Badges */
@@ -236,23 +250,31 @@ a, a:link {
     width: 100%;
 }
 
-#vegpledge-gallery, #vegpledge-list-pledges {
+#vegpledge-gallery, #vegpledge-list-pledges, #vegpledge-choose-pledges {
     overflow: auto;
     position: relative;
 }
 
-#vegpledge-gallery li, li.pledge {
+#vegpledge-gallery li, .pledge, .mini-pledge {
     float: left;
 }
 
-#vegpledge-gallery li, #vegpledge-gallery a, .pledge {
+#vegpledge-gallery li, #vegpledge-gallery a, .pledge, .mini-pledge {
     display: block;
     border: 0;
-    height: 192px;
     margin: 0;
     padding: 0;
     text-indent: -15000px;
+}
+
+#vegpledge-gallery li, #vegpledge-gallery a, .pledge {
+    height: 192px;
     width: 192px;
+}
+
+.mini-pledge {
+    height: 150px;
+    width: 150px;
 }
 
 #vegpledge-gallery a:hover, .pledge {
@@ -263,69 +285,211 @@ a.pledge-bottle:hover, .pledge-bottle {
     background-position: -0px -0px;
 }
 
+.mini-pledge-bottle {
+    background-image: url(/wp-content/themes/vegpledge-theme/bottle-small.gif);
+}
+
 a.pledge-containers:hover, .pledge-containers {
     background-position: -192px -0px;
+}
+
+.mini-pledge-containers {
+    background-image: url(/wp-content/themes/vegpledge-theme/containers-small.gif);
 }
 
 a.pledge-bags:hover, .pledge-bags {
     background-position: -384px -0px;
 }
 
+.mini-pledge-bags {
+    background-image: url(/wp-content/themes/vegpledge-theme/bags-small.gif);
+}
+
 a.pledge-local:hover, .pledge-local {
     background-position: -576px -0px;
+}
+
+.mini-pledge-local {
+    background-image: url(/wp-content/themes/vegpledge-theme/local-small.gif);
 }
 
 a.pledge-veg:hover, .pledge-veg {
     background-position: -768px -0px;
 }
 
+.mini-pledge-veg {
+    background-image: url(/wp-content/themes/vegpledge-theme/veg-small.gif);
+}
+
 a.pledge-seafood:hover, .pledge-seafood {
     background-position: -0px -192px;
+}
+
+.mini-pledge-seafood {
+    background-image: url(/wp-content/themes/vegpledge-theme/seafood-small.gif);
 }
 
 a.pledge-garden:hover, .pledge-garden {
     background-position: -192px -192px;
 }
 
+.mini-pledge-garden {
+    background-image: url(/wp-content/themes/vegpledge-theme/garden-small.gif);
+}
+
 a.pledge-mug:hover, .pledge-mug {
     background-position: -384px -192px;
+}
+
+.mini-pledge-mug {
+    background-image: url(/wp-content/themes/vegpledge-theme/mug-small.gif);
 }
 
 a.pledge-organic:hover, .pledge-organic {
     background-position: -576px -192px;
 }
 
+.mini-pledge-organic {
+    background-image: url(/wp-content/themes/vegpledge-theme/organic-small.gif);
+}
+
 a.pledge-trip:hover, .pledge-trip {
     background-position: -768px -192px;
+}
+
+.mini-pledge-trip {
+    background-image: url(/wp-content/themes/vegpledge-theme/trip-small.gif);
 }
 
 a.pledge-packaging:hover, .pledge-packaging {
     background-position: -0px -384px;
 }
 
+.mini-pledge-packaging {
+    background-image: url(/wp-content/themes/vegpledge-theme/packaging-small.gif);
+}
+
 a.pledge-transport:hover, .pledge-transport {
     background-position: -192px -384px;
+}
+
+.mini-pledge-transport {
+    background-image: url(/wp-content/themes/vegpledge-theme/transport-small.gif);
 }
 
 a.pledge-cooking:hover, .pledge-cooking {
     background-position: -384px -384px;
 }
 
+.mini-pledge-cooking {
+    background-image: url(/wp-content/themes/vegpledge-theme/cooking-small.gif);
+}
+
 a.pledge-herbs:hover, .pledge-herbs {
     background-position: -576px -384px;
+}
+
+.mini-pledge-herbs {
+    background-image: url(/wp-content/themes/vegpledge-theme/herbs-small.gif);
 }
 
 a.pledge-venues:hover, .pledge-venues {
     background-position: -768px -384px;
 }
 
-/* Pledge List */
+.mini-pledge-venues {
+    background-image: url(/wp-content/themes/vegpledge-theme/venues-small.gif);
+}
 
-#comments {
-    margin: 0;
+/* Below taken from facebox: http://github.com/defunkt/facebox */
+
+#facebox .b {
+  background:url(b.png);
+}
+
+#facebox .tl {
+  background:url(fbx-border-sprite.png) 0 0;
+  width: 10px; 
+  height: 10px;
+}
+
+#facebox .tr {
+  background:url(fbx-border-sprite.png) -10px 0;
+  width: 10px; 
+  height: 10px;
+}
+
+#facebox .bl {
+  background:url(fbx-border-sprite.png) -20px 0;
+  width: 10px; 
+  height: 10px;
+}
+
+#facebox .br {
+  background:url(fbx-border-sprite.png) -30px 0;
+  width: 10px; 
+  height: 10px;
+}
+
+#facebox {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  text-align: left;
+}
+
+#facebox .popup {
+  position: relative;
+}
+
+#facebox table {
+  border-collapse: collapse;
+  /* ie 6 hack -- if the global table width is set to anything it could cause us issues*/
+  -width:0%;
+}
+
+#facebox tr {
+    border: 0;
     padding: 0;
 }
 
-#vegpledge-list-pledges {
-    margin: 0 -10px;
+#facebox td {
+  border-bottom: 0;
+  padding: 0;
+}
+
+#facebox .body {
+  padding: 10px;
+  background: #fff;
+  width: 770px;
+}
+
+#facebox .tl, #facebox .tr, #facebox .bl, #facebox .br {
+  height: 10px;
+  width: 10px;
+  overflow: hidden;
+  padding: 0;
+}
+
+#facebox_overlay {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  height:100%;
+  width:100%;
+}
+
+.facebox_hide {
+  z-index:-100;
+}
+
+.facebox_overlayBG {
+  background-color: #000;
+  z-index: 99;
+}
+
+* html #facebox_overlay { /* ie6 hack */
+  position: absolute;
+  height: expression("document.body.scrollHeight > document.body.offsetHeight ? document.body.scrollHeight : document.body.offsetHeight + 'px'");
 }

@@ -154,7 +154,7 @@ body, input, textarea,
 .entry-content h1, .entry-content h2, .entry-content h3, .entry-content h4, .entry-content h5, .entry-content h6,
 #comments h1, #comments h2, #comments h3, #comments h4, #comments h5, #comments h6,
 .aside caption {
-    font-family: Cantarell, sans-serif;
+    font-family: Tahoma, sans-serif;
     font-style: normal;
     font-weight: normal;
 }
